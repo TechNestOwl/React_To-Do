@@ -18,11 +18,12 @@ export default function App(){
           completed: false},
       ]
     })
+    setNewItem("") // resetting newItem to empty string to clear input
   }; 
 
   return (
     <>
-      <form className="new-item-form">
+      <form onSubmit={handleSubmit} className="new-item-form">
             <div className="form-row">
               <label htmlFor="item">New Item</label>
               <input 
@@ -35,20 +36,17 @@ export default function App(){
         </form>
         <h1 className="header">ToDo List</h1>
         <ul className="list">
-          <li>
-            <label>
-              <input type="checkbox"/>
-              Item 1  
-            </label>
-            <button className="btn btn-danger">Delete</button>
-          </li>
-          <li>
-            <label>
-              <input type="checkbox"/>
-              Item 2  
-            </label>
-            <button className="btn btn-danger">Delete</button>
-          </li>
+          {todos.map(todo =>{ 
+              return (
+                 <li key={todo.id}>
+                  <label>
+                    <input type="checkbox" checked={todo.completed}/>
+                    {todo.title}  
+                  </label>
+                  <button className="btn btn-danger">Delete</button>
+                </li>
+              )
+          } )}
         </ul>
       </>
   )
