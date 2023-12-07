@@ -54,6 +54,8 @@ export default function App(){
         </form>
         <h1 className="header">ToDo List</h1>
         <ul className="list">
+        
+          {todos.length === 0 && "No todos"} {/* //short circuiting to display if there are no todos. */}
           {todos.map(todo =>{ 
               return (
                  <li key={todo.id}>
@@ -64,7 +66,7 @@ export default function App(){
                     {todo.title}  
                   </label>
                   <button className="btn btn-danger"
-                   onClick={() => deleteTodo(todo.id)}>Delete</button> // pass with an arrow function. Otherwise 
+                   onClick={() => deleteTodo(todo.id)}>Delete</button> 
                 </li>
               )
           } )}
