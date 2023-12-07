@@ -1,14 +1,24 @@
 import {useState} from "react"
 import "./styles.css"
 
+//changing state causes components to reRender
 
 export default function App(){
   const [newItem, setNewItem] = useState("")
   const [todos, setTodos] = useState([])
 
   function handleSubmit(e){
-    e.preventDefault()
-  }; //prevent the page from refreshing onSubmit
+    e.preventDefault() //prevent the page from refreshing onSubmit
+
+    setTodos((currentTodos) => {
+      return [
+        ...currentTodos, // using spread operator to create new array
+        {id: crypto.randomUUID(), 
+          title: newItem ,
+          completed: false},
+      ]
+    })
+  }; 
 
   return (
     <>
